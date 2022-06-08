@@ -4,53 +4,76 @@
 #include <WiFiUdp.h>
 #include <Wire.h>
 #include <RTClib.h>
-//
+// Oled libary
 #include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-//
+// Oled Config
+// Tinggi dan lebar dari oled 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
 
 // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+// Untuk declare SSD1306 I2C 
+// Nodemcu 
+// SDA = D4 ,SCL = D5
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
-// Perhatian !
-// Untuk nodemcu  pin 4 = D4
-// SCL=D1
-// SDA=D2
-// relay define
-#define relay1 D3
+// Define
+// Declare untuk hardware.
+// Untuk ESP 
+// #define var Dx
+// Dx = Pin
+// var = variable 
+#define relay1 D3 
 #define relay2 D4
 #define buzzer D5
-#define relay3 D6
-char buff[10];
-// Untuk LCD 16x2
 
-// Nama SSID dan password Wi-fi
+// Wifi-Config
+// SSID Wi-fi dan password wifi.
+// Harap disesuaiakn sebelum upload! .
 const char *ssid     = "Telems_Network";
 const char *password = "kariso-tech";
-
-const long utcOffsetInSeconds = 28800;
+// Time Config
 // UTC Time
-// Contoh UTC+8 =8*60*60+0*60=28800
+// Bangkok = UTC+8
+// utcOffsetInSeconds= UTC*(60m)*(60s)+(utc)(60)
+// unutk utc berlaku jika zona waktu seperti 
+// UTC+03:30
+// utcOffsetInSeconds= ((3)*60*60)+((30)*(60))
+// Refrensi https://microcontrollerslab.com/iot-analog-digital-clock-oled-esp32-esp8266/
+// -------------------------------------------------------------------------------------------
+const long utcOffsetInSeconds = 28800;
 
-// Untuk waktu
+// myTime; String
+// Interger dan string untuk waktu.
 int Secs;
 int Minutes;
 int Hours;
 String myTime;
-// Date
+// Interger dan string untuk tanggal
 String Date;
 String formattedDate;
 String dayStamp;
-// Time For Relay
+// Timer Config.
+// Interger dan string untuk waktu
+// Time_Off & Minute_Off adalah variable untuk mematikan relay.
+// Time_On & Minute_On adalah variable untuk menyalakan  relay.
+// Sebagai contoh
+// Jika ingin mematikan relay pada jam 16:04 (04:04PM)
+// Maka Time_Off = 16; & Minute_Off = 4;
+// -------------------------------------------------------------------------------------------
+// Time_On & Minute_On adalah variable untuk menyalakan relay/
+// Sebagai contoh
+// Jika ingin menyalakan relay pada jam 16:08 (04:08PM)
+// Maka Time_On = 16; & Minute_On = 8;
+// -------------------------------------------------------------------------------------------
 int Time_Off = 16;
 int Minute_Off = 4;
 int Time_On = 16;
 int Minute_On = 8;
 
-// Define NTP Client to get time
+// Define NTP Client unutk mendapatkan waktu dri internet
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "asia.pool.ntp.org", utcOffsetInSeconds);
 
@@ -59,11 +82,11 @@ void setup() {
   display.clearDisplay();
   pinMode(relay1, OUTPUT); /*Untuk growing light */
   pinMode(relay2, OUTPUT); /* Untuk pompa mini */
-  pinMode(relay3, OUTPUT); /* Untuk pompa mini */
-  pinMode(buzzer, OUTPUT); /*Untuk Buzzer */
+  pinMode(buzzer, OUTPUT); /*Untuk buzzer */
   Serial.begin(115200);
   WiFi.begin(ssid, password);
 
+// Loding screen dan status internet
   while ( WiFi.status() != WL_CONNECTED ) {
     display.setTextSize(2);
     display.setTextColor(WHITE);
@@ -177,9 +200,9 @@ void Tone() {
 }
 // Untuk menyalakan pompa.
 void pump() {
-  digitalWrite(relay3, LOW);
+  digitalWrite(relay2, LOW);
   delay(9000);
-  digitalWrite(relay3, HIGH);
+  digitalWrite(relay2, HIGH);
 }
 
 void alaram_1() {
