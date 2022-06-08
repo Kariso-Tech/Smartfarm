@@ -19,12 +19,12 @@
 // SDA = D4 ,SCL = D5
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
-// Define
+// Define.
 // Declare untuk hardware.
-// Untuk ESP 
-// #define var Dx
-// Dx = Pin
-// var = variable 
+// Untuk ESP.
+// #define var Dx.
+// Dx = Pin.
+// var = variable.
 #define relay1 D3 
 #define relay2 D4
 #define buzzer D5
@@ -68,10 +68,10 @@ String dayStamp;
 // Jika ingin menyalakan relay pada jam 16:08 (04:08PM)
 // Maka Time_On = 16; & Minute_On = 8;
 // -------------------------------------------------------------------------------------------
-int Time_Off = 16;
-int Minute_Off = 4;
-int Time_On = 16;
-int Minute_On = 8;
+int Time_Off = 18;
+int Minute_Off = 10;
+int Time_On = 18;
+int Minute_On = 15;
 
 // Define NTP Client unutk mendapatkan waktu dri internet
 WiFiUDP ntpUDP;
@@ -176,7 +176,7 @@ void lcdtime() {
   display.setCursor(0, 17);
   display.println(myTime);
   display.display();
-  delay(500);
+  delay(1000);
   myTime = "";
   display.clearDisplay();
   display.setCursor(0, 1);
@@ -195,7 +195,7 @@ void lightoff() {
 void Tone() {
   Serial.print("Buzzer! ");
   tone(buzzer, 900);
-  delay(1000);
+  delay(5000);
   noTone(buzzer);
 }
 // Untuk menyalakan pompa.
