@@ -29,6 +29,8 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 #define relay2 D4
 #define buzzer D5
 
+
+
 // Wifi-Config
 // SSID Wi-fi dan password wifi.
 // Harap disesuaiakn sebelum upload! .
@@ -68,11 +70,11 @@ String dayStamp;
 // Jika ingin menyalakan relay pada jam 16:08 (04:08PM)
 // Maka Time_On = 16; & Minute_On = 8;
 // -------------------------------------------------------------------------------------------
-int Time_Off = 18;
-int Minute_Off = 10;
+int Time_Off = 22;
+int Minute_Off = 53;
 //--------------------------------------------------------------------------------------------
-int Time_On = 18;
-int Minute_On = 15;
+int Time_On = 22;
+int Minute_On = 55;
 
 // Define NTP Client unutk mendapatkan waktu dri internet
 WiFiUDP ntpUDP;
