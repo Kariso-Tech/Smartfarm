@@ -2,9 +2,8 @@
 // Mod By Christian Kariso
 // Unutk coding menggunakan Nodemcu tidak sama dengan coding pada arduino
 // Nodemcu harus #define dulu baru buat pinMode
-#define relay1 D4
-#define relay2 D3
-#define relay3 D5
+#define relay1 D3
+#define relay2 D5
 void setup() {
 
   Serial.begin(9600);
@@ -57,6 +56,3 @@ void loop() {
     }
   }
 }
-
-void pump();
-digitalWrite(relay1, LOW);

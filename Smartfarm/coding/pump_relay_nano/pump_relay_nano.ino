@@ -3,7 +3,7 @@
 // Nodemcu harus #define dulu baru buat pinMode
 
 // Declare 
-int relay1 = 7;
+int relay1 = D4;
 int relay2 = 8;
 const int buzzer = 11;
 void setup() {
