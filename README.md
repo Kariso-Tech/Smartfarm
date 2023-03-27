@@ -1,6 +1,6 @@
 # Smartfarm
-My best of the best code
+My portofolio
 
 
 Project prbadi dari Christian Kariso, demi meningkatakan skill coding dan berpikir 
-itu saja.
+,itu saja.
